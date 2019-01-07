@@ -1,5 +1,7 @@
 <?php
 
+namespace Yfrommelt;
+
 class StopWords
 {
     public static function get($locale = 'en')
@@ -25,6 +27,9 @@ class StopWords
             throw new \Exception(sprintf('unsupported "%s" locale', $locale));
         }
 
-        return file(sprintf('dictionary/%s', $locales[$locale]), FILE_IGNORE_NEW_LINES);
+        return file(
+            sprintf('%s/dictionary/%s', __DIR__, $locales[$locale]),
+            FILE_IGNORE_NEW_LINES
+        );
     }
 }

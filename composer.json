@@ -8,10 +8,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": "^5.4|^7.0"
+    },
     "autoload": {
-        "psr-4": {
-            "": "src"
-        }
+        "psr-4": { "Yfrommelt": "src" }
     }
 }

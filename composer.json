@@ -1,0 +1,17 @@
+{
+    "name": "yfrommelt/stop-words",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yoann Frommelt",
+            "email": "yoann@frommelt.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    }
+}

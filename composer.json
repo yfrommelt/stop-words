@@ -9,7 +9,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^5.4|^7.0"
+        "php": "^5.4|^7.0",
+        "ext-mbstring": "*"
     },
     "autoload": {
         "psr-4": { "Yfrommelt\\": "src" }

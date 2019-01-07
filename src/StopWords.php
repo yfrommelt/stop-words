@@ -48,7 +48,7 @@ class StopWords
     public static function toTitleCase($locale, $str, $encoding = 'UTF-8')
     {
         $stopWords = self::get($locale);
-        $delimiters = [' ', '.', '-'];
+        $delimiters = [' ', '.', '-', '/'];
 
         $str = mb_convert_case($str, MB_CASE_TITLE, $encoding);
 
@@ -80,7 +80,7 @@ class StopWords
     public static function toSlug($locale, $str, $encoding = 'UTF-8')
     {
         $stopWords = self::get($locale);
-        $delimiters = [' ', '.', '-'];
+        $delimiters = [' ', '.', '-', '/'];
 
         $str = mb_strtolower($str, $encoding);
 

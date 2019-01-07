@@ -48,26 +48,19 @@ class StopWords
     public static function toTitleCase($locale, $str, $encoding = 'UTF-8')
     {
         $stopWords = self::get($locale);
-        $delimiters = [' ', '.', '-', '/'];
+        $delimiters = '/([\s\.\-\'\"])/';
 
-        $str = mb_convert_case($str, MB_CASE_TITLE, $encoding);
-
-        foreach ($delimiters as $delimiter) {
-            $words = explode($delimiter, $str);
-            $keeps = [];
-            foreach ($words as $word) {
-                $lower = mb_strtolower($word, $encoding);
-                if (in_array($lower, $stopWords)) {
-                    $word = $lower;
-                } else {
-                    $word = ucfirst($word);
-                }
-                array_push($keeps, $word);
+        $str = mb_strtolower($str, $encoding);
+        $words = preg_split($delimiters, $str, -1, PREG_SPLIT_DELIM_CAPTURE);
+        $keeps = [];
+        foreach ($words as $word) {
+            if (!in_array($word, $stopWords)) {
+                $word = ucfirst($word);
             }
-            $str = join($delimiter, $keeps);
+            array_push($keeps, $word);
         }
 
-        return $str;
+        return implode('', $keeps);
     }
 
     /**
@@ -80,21 +73,16 @@ class StopWords
     public static function toSlug($locale, $str, $encoding = 'UTF-8')
     {
         $stopWords = self::get($locale);
-        $delimiters = [' ', '.', '-', '/'];
+        $delimiters = '/([\s\.\-\'\"])/';
 
         $str = mb_strtolower($str, $encoding);
-
-        foreach ($delimiters as $delimiter) {
-            $words = explode($delimiter, $str);
-            $keeps = [];
-            foreach ($words as $word) {
-                if (!in_array($word, $stopWords)) {
-                    array_push($keeps, $word);
-                }
+        $words = preg_split($delimiters, $str);
+        $keeps = [];
+        foreach ($words as $word) {
+            if (!in_array($word, $stopWords)) {
+                array_push($keeps, $word);
             }
-            $str = join('-', $keeps);
         }
-
-        return $str;
+        return implode('-', $keeps);
     }
 }

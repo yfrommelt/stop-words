@@ -55,7 +55,7 @@ class StopWords
         $keeps = [];
         foreach ($words as $word) {
             if (!in_array($word, $stopWords)) {
-                $word = ucfirst($word);
+                $word = self::mb_ucfirst($word);
             }
             array_push($keeps, $word);
         }
@@ -84,5 +84,18 @@ class StopWords
             }
         }
         return implode('-', $keeps);
+    }
+
+    /**
+     * @param string $str
+     * @param string $encoding
+     * @return string
+     */
+    public static function mb_ucfirst($str, $encoding = 'UTF-8')
+    {
+        $strlen = mb_strlen($str, $encoding);
+        $firstChar = mb_substr($str, 0, 1, $encoding);
+        $then = mb_substr($str, 1, $strlen - 1, $encoding);
+        return mb_strtoupper($firstChar, $encoding) . $then;
     }
 }

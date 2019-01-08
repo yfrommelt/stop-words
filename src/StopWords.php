@@ -93,7 +93,9 @@ class StopWords
      */
     public static function mb_ucfirst($str, $encoding = 'UTF-8')
     {
-        $str[0] = mb_strtoupper($str[0], $encoding);
-        return $str;
+        $strlen = mb_strlen($str, $encoding);
+        $firstChar = mb_substr($str, 0, 1, $encoding);
+        $then = mb_substr($str, 1, $strlen - 1, $encoding);
+        return mb_strtoupper($firstChar, $encoding) . $then;
     }
 }

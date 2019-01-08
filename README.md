@@ -5,6 +5,23 @@
 composer require yfrommelt/stop-words
 ```
 
+## Supported languages
+
+- Danish **da**
+- Dutch **nl**
+- English **en**
+- Finnish **fi**
+- French **fr**
+- German **de**
+- Hungarian **hu**
+- Italian **it**
+- Norwegian **no**
+- Portuguese **pt**
+- Russian **ru**
+- Spanish **es**
+- Swedish **sv**
+- Turkish **tr**
+
 ## Usage 
 ```php
 use Yfrommelt\StopWords;

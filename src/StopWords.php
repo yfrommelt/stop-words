@@ -73,7 +73,7 @@ class StopWords
     public static function toSlug($locale, $str, $encoding = 'UTF-8')
     {
         $stopWords = self::get($locale);
-        $delimiters = '/([\s\.\-\'\"])/';
+        $delimiters = '/([\s\.\-\'\"\/])/';
 
         $str = mb_strtolower($str, $encoding);
         $words = preg_split($delimiters, $str);

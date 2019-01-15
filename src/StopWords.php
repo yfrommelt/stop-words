@@ -4,6 +4,7 @@ namespace Yfrommelt;
 
 class StopWords
 {
+    const PREG_SPLIT_PATTERN = '/([\s\.\-\'\"\/])/';
     /**
      * @param string $locale
      * @return array
@@ -48,10 +49,9 @@ class StopWords
     public static function toTitleCase($locale, $str, $encoding = 'UTF-8')
     {
         $stopWords = self::get($locale);
-        $delimiters = '/([\s\.\-\'\"])/';
 
         $str = mb_strtolower($str, $encoding);
-        $words = preg_split($delimiters, $str, -1, PREG_SPLIT_DELIM_CAPTURE);
+        $words = preg_split(self::PREG_SPLIT_PATTERN, $str, -1, PREG_SPLIT_DELIM_CAPTURE);
         $keeps = [];
         foreach ($words as $word) {
             if (!in_array($word, $stopWords)) {
@@ -73,10 +73,9 @@ class StopWords
     public static function toSlug($locale, $str, $encoding = 'UTF-8')
     {
         $stopWords = self::get($locale);
-        $delimiters = '/([\s\.\-\'\"\/])/';
 
         $str = mb_strtolower($str, $encoding);
-        $words = preg_split($delimiters, $str);
+        $words = preg_split(self::PREG_SPLIT_PATTERN, $str);
         $keeps = [];
         foreach ($words as $word) {
             if (!in_array($word, $stopWords)) {
